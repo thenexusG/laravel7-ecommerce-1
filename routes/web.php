@@ -15,7 +15,20 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'MainController@home')->name('home');
+Auth::routes();
+Route::resource('products', 'ProductsController');
+/* 
+GET /products =>index 
+POST  /products =>store
+GET /products/create => formulario para  crear
+
+GET /products*:id => mostrat un producto
+GET /product/:id/edit 
+PUT/PATCH /products/:id
+DELETE /products/:id
+*/
+
 
 Route::get('shop', 'ShopController@index')->name('shop.index');
 Route::get('shop/{product}', 'ShopController@show')->name('shop.show');
@@ -34,3 +47,7 @@ Route::get('checkout', 'CheckoutController@index')->name('checkout.index');
 
 Route::post('coupon', 'CouponController@store')->name('coupon.store');
 Route::delete('coupon', 'CouponController@destroy')->name('coupon.destroy');
+
+Auth::routes();
+
+Route::get('/home', 'MainController@index')->name('home');
